@@ -64,8 +64,7 @@ cd oro-backend
 Install dependencies:
 
 bash
-Copy
-Edit
+
 npm install
 Create a .env file in the project root with the following variables:
 
@@ -78,8 +77,7 @@ BASE_URL=http://localhost:5000
 Start the server:
 
 bash
-Copy
-Edit
+
 npm run dev
 The server should be running at http://localhost:5000.
 
@@ -100,8 +98,6 @@ Usage Examples
 Request:
 
 http
-Copy
-Edit
 POST /shorten
 Content-Type: application/json
 
@@ -111,8 +107,7 @@ Content-Type: application/json
 Response:
 
 json
-Copy
-Edit
+
 {
   "shortUrl": "http://localhost:5000/abc123"
 }
@@ -177,3 +172,39 @@ Add frontend UI.
 Add detailed analytics (e.g., referrers, geolocation).
 
 Dockerize the app for easier deployment.
+****************************************************************************
+
+####
+
+✅ Implemented Features
+🎯 Core Functionality
+✅ RESTful API with clear routing
+
+✅ Shortens long URLs into unique short codes
+
+✅ Redirects users from short URL to original URL
+
+✅ Stores original URL, short code, timestamp, and expiry date in MongoDB
+
+🔐 Input Validation & Error Handling
+✅ Validates URL format using validator
+
+✅ Returns appropriate HTTP status codes (400, 404, 410, 500)
+
+✅ Global error handling with try-catch and fallback middleware
+
+🛠️ CRUD with MongoDB
+✅ Create: Stores shortened URLs
+
+✅ Read: Redirects and fetches stats
+
+✅ Update: Tracks clicks for each access
+
+✅ (Delete not required for this assignment)
+
+⚡ Bonus Features
+✅ Rate Limiting – Limits excessive requests using express-rate-limit
+
+✅ Expiration Logic – URLs expire after a configurable number of days
+
+✅ Analytics – Tracks number of times a short URL is accessed (clicks field)
