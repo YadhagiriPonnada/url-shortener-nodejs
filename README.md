@@ -89,7 +89,7 @@ BASE_URL	Base URL for generated short URLs	http://localhost:5000
 
 API Endpoints
 Method	Endpoint	Description	Request Body	Response
-POST	/shorten	Create a short URL	{ "url": "https://longurl.com" }	{ "shortUrl": "http://.../abc123" }
+POST	/shorten	Create a short URL	{ "url": "https://longurl.com" }	{ "shortUrl": "http://.../xyz123" }
 GET	/:code	Redirect to original URL	N/A	Redirect (302) to original URL
 GET	/stats/:code	Get analytics about a short URL	N/A	URL info (clicks, expiry, etc.)
 
@@ -102,49 +102,56 @@ POST /shorten
 Content-Type: application/json
 
 {
-  "url": "https://www.freecodecamp.org/news/learn-node-js-full-course/"
+  "url": "https://www.bing.com/search?qs=SC&pq=java+tutiral&sk=CSYN1SC2&sc=11-12&pglt=297&q=java+tutorial+javatpoint&cvid=e860912b56f44984b9d35987f52fa40c&gs_lcrp=EgRlZGdlKgYIAxAAGEAyBggAEEUYOTIGCAEQABhAMgYIAhAAGEAyBggDEAAYQDIGCAQQABhAMgYIBRAAGEAyBggGEAAYQDIGCAcQABhAMgYICBAAGEDSAQg4ODkxajBqMagCALACAA&FORM=ANNTA1&PC=NMTS"
 }
 Response:
 
 json
 
 {
-  "shortUrl": "http://localhost:5000/abc123"
+  "shortUrl": "http://localhost:5000/3R-rEh"
 }
-2. Redirect
-Navigate to:
+2. 🔁 Redirect to the Original URL
+Open this URL in your browser:
 
-bash
-Copy
-Edit
-http://localhost:5000/abc123
-This redirects to:
+arduino
 
-ruby
-Copy
-Edit
-https://www.freecodecamp.org/news/learn-node-js-full-course/
-3. Get Stats
+http://localhost:5000/3R-rEh
+It will redirect to:
+
+arduino
+
+https://www.bing.com/search?qs=SC&pq=java+tutiral...
+✅ Ensure your server is running, and test in a browser (not Postman) for best results.
+3. 📊 Get Stats for a Short URL
 Request:
 
 http
-Copy
-Edit
-GET /stats/abc123
+
+GET /stats/3R-rEh
+
 Response:
 
 json
-Copy
-Edit
+
+
 {
-  "originalUrl": "https://www.freecodecamp.org/news/learn-node-js-full-course/",
-  "shortCode": "abc123",
-  "createdAt": "2025-07-09T10:00:00.000Z",
-  "expiryDate": "2025-07-16T10:00:00.000Z",
-  "clicks": 10
+  "originalUrl": "https://www.bing.com/search?pglt=297&q=oro+comany&cvid=614ee6d5c937459cb0558758708a735d&gs_lcrp=EgRlZGdlKgYIABBFGDkyBggAEEUYOTIGCAEQABhAMgYIAhAAGEAyBggDEAAYQDIGCAQQABhAMgYIBRAAGEAyBggGEAAYQDIGCAcQABhAMgYICBAAGEDSAQg4ODQ0ajBqMagCCLACAQ&FORM=ANNTA1&PC=NMTS",
+  "shortCode": "28EpvO",
+  "expiryDate": {
+    "$date": "2025-07-17T18:01:13.136Z"
+  },
+  "clicks": 1,
+  "createdAt": {
+    "$date": "2025-07-10T18:01:13.136Z"
+  },
+  "__v": 0
 }
+
+
+
 Rate Limiting & Expiry
-Requests are limited to 100 per 15 minutes per IP to prevent abuse.
+Requests are limited to 100 per 20 minutes per IP to prevent abuse.
 
 Short URLs expire after 7 days by default. Accessing expired URLs returns a 410 Gone status.
 
